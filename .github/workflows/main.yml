@@ -1,0 +1,28 @@
+name: DVC Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  dvc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'  # Укажите нужную версию Python
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install dvc pandas  # Установка необходимых зависимостей
+
+      - name: Run DVC pipeline
+        run: |
+          dvc pull  # Получить данные из удаленного хранилища
+          dvc repro  # Запустить пайплайн DVC
