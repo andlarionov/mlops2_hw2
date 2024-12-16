@@ -15,13 +15,19 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.8'
+          python-version: '3.8'  # Укажите нужную версию Python
 
       - name: Install DVC and dependencies
         run: |
           python -m pip install --upgrade pip
           pip install "dvc[gdrive]"
           pip install pandas
+
+      - name: Set up Google Drive credentials
+        run: |
+          echo "${{ secrets.GDRIVE_CREDENTIALS_DATA }}" > /tmp/gdrive_credentials.json
+          dvc remote modify project_2 gdrive_service_account_json_file_path /tmp/gdrive_credentials.json
+          dvc remote modify project_2 gdrive_use_service_account true
 
       - name: Run DVC pipeline
         run: |
