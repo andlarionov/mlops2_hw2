@@ -2,3 +2,5 @@
     remote = project_2
 ['remote "project_2"']
     url = gdrive://1Vpso52Z6vOEXE06rmfyvXfk4U5UzPIxk
+    gdrive_use_service_account = true
+    gdrive_service_account_json_file_path = /mnt/c/Users/1/Desktop/URFU/g-drive/engaged-ground-422912-u4-65da5d058307.json
