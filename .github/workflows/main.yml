@@ -31,5 +31,5 @@ jobs:
 
       - name: Run DVC pipeline
         run: |
-          dvc pull  # Получить данные из удаленного хранилища
-          dvc repro  # Запустить пайплайн DVC
+          dvc pull
+          dvc repro
