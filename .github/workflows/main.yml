@@ -1,5 +1,7 @@
 name: DVC Pipeline
 
+name: DVC Pipeline
+
 on:
   push:
     branches:
@@ -15,7 +17,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.8'
+          python-version: '3.8'  # Укажите нужную версию Python
 
       - name: Install DVC and dependencies
         run: |
@@ -28,12 +30,13 @@ jobs:
           echo "${{ secrets.GDRIVE_CREDENTIALS_DATA }}" > /tmp/gdrive_credentials.json
           dvc remote modify project_2 gdrive_service_account_json_file_path /tmp/gdrive_credentials.json
 
-      - name: Check DVC version
+      - name: Display Google Drive credentials
         run: |
-          dvc --version
+          cat /tmp/gdrive_credentials.json 
 
       - name: Run DVC pipeline with debug logs
         run: |
           dvc pull -vvv
           dvc repro -vvv
+
 
