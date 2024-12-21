@@ -1,7 +1,5 @@
 name: DVC Pipeline
 
-name: DVC Pipeline
-
 on:
   push:
     branches:
