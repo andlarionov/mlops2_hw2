@@ -23,6 +23,10 @@ jobs:
           pip install "dvc[gdrive]"
           pip install pandas
 
+      - name: Check DVC version
+        run: |
+          dvc --version  # Проверяем версию DVC
+
       - name: Set up Google Drive credentials
         run: |
           echo "${{ secrets.GDRIVE_CREDENTIALS_DATA }}" > /tmp/gdrive_credentials.json
@@ -30,11 +34,12 @@ jobs:
 
       - name: Display Google Drive credentials
         run: |
-          cat /tmp/gdrive_credentials.json 
+          cat /tmp/gdrive_credentials.json  # Отображаем содержимое файла с учетными данными для проверки
 
       - name: Run DVC pipeline with debug logs
         run: |
           dvc pull -vvv
           dvc repro -vvv
+
 
 
